@@ -8,7 +8,7 @@ import { Logger } from 'winston';
 
 const log: Logger = winstonLogger(`${config.ELASTIC_SEARCH_URL}`, 'Notification', 'debug');
 
-export const consumerJavaServices = async (channel: Channel | undefined) => {
+export const consumerJavaServices = async (channel: Channel) => {
 	try {
 		if (!channel) {
 			channel = (await createConnection()) as Channel;
@@ -31,6 +31,7 @@ export const consumerJavaServices = async (channel: Channel | undefined) => {
 			if (msg) {
 				const { email } = JSON.parse(msg.content.toString());
 				await sendVerifyEmail(email, 'RabbitMQ', 'Verify Emaillllllllll');
+				channel.ack(msg);
 			}
 		});
 	} catch (error) {

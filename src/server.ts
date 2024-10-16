@@ -6,6 +6,7 @@ import { createConnection } from '@notification/queues/connection';
 import { consumerJavaServices } from '@notification/queues/consumer';
 import healthRoute from '@notification/routes/health.routes';
 import { winstonLogger } from '@notification/winston';
+import { Channel } from 'amqplib';
 import { Application } from 'express';
 import http from 'http';
 import { Logger } from 'winston';
@@ -26,7 +27,7 @@ export class NotificationServer {
 
 	private async initQueues() {
 		const channel = await createConnection();
-		consumerJavaServices(channel);
+		consumerJavaServices(channel as Channel);
 	}
 
 	private async initElasticsearch() {

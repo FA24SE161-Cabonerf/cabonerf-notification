@@ -19,6 +19,7 @@
 	"license": "ISC",
 	"description": "",
 	"dependencies": {
+		"@aws-sdk/client-ses": "^3.670.0",
 		"@elastic/elasticsearch": "^8.15.0",
 		"@types/amqplib": "^0.10.5",
 		"amqplib": "^0.10.4",

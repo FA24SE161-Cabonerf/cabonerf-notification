@@ -29,8 +29,9 @@ export const consumerJavaServices = async (channel: Channel) => {
 
 		await channel.consume(_queue.queue, async (msg) => {
 			if (msg) {
-				const { email } = JSON.parse(msg.content.toString());
-				await sendVerifyEmail(email, 'RabbitMQ', 'Verify Emaillllllllll');
+				const { email, content } = JSON.parse(msg.content.toString());
+				console.log('123');
+				await sendVerifyEmail(email, 'RabbitMQ', content);
 				channel.ack(msg);
 			}
 		});

@@ -3,6 +3,7 @@ FROM node:22-alpine
 WORKDIR /app
 COPY package.json ./
 COPY tsconfig.json ./
+COPY .env ./
 COPY src ./src
 RUN ls -a
 RUN npm install && npm install -g nodemon
